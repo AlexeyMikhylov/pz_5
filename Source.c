@@ -28,10 +28,8 @@ int choice(void)
 
 int operations(char o)
 {
-	/*char t1[10];
-	char t2[10];
-	if(scanf("%s", t1) != NULL);
-	if(scanf("%s", t2) != NULL);*/
+	fflush(stdin);
+	fseek(stdin, 0, SEEK_END);
 
 	float a, b;
 	if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
@@ -77,7 +75,7 @@ int switchcase()
 	puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
 	while (10 > 0)
 	{
-		scanf("%s", &o);
+		scanf(" %c", &o);
 		if (o == '0')
 		{
 			//choice();
@@ -117,6 +115,7 @@ int divide(float a, float b)
 
 int pointer() 
 {
+
 	char o;
 	float a, b,c;
 	float (*operation[])(float, float) = { ['+'] = addup,['-'] = subtract,['*'] = multiply,['/'] = divide };
@@ -124,7 +123,11 @@ int pointer()
 	{
 		puts("\nwhat you want to do?\n");
 		puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
-		scanf("%s", &o);
+		scanf(" %c", &o);
+
+		fflush(stdin);
+		fseek(stdin, 0, SEEK_END);
+
 		if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
 		{
 			puts("\nerror");
