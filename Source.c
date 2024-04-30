@@ -28,8 +28,14 @@ int choice(void)
 
 int operations(char o)
 {
-	fflush(stdin);
-	fseek(stdin, 0, SEEK_END);
+	if (getchar() != '\n') {
+		printf("error\n");
+
+		// Очистка буфера ввода
+		while (getchar() != '\n');
+
+		switchcase(); // Повторяем ввод заново
+	}
 
 	float a, b;
 	if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
@@ -115,7 +121,6 @@ int divide(float a, float b)
 
 int pointer() 
 {
-
 	char o;
 	float a, b,c;
 	float (*operation[])(float, float) = { ['+'] = addup,['-'] = subtract,['*'] = multiply,['/'] = divide };
@@ -125,8 +130,14 @@ int pointer()
 		puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
 		scanf(" %c", &o);
 
-		fflush(stdin);
-		fseek(stdin, 0, SEEK_END);
+		if (getchar() != '\n') {
+			printf("Error\n");
+
+			// Очистка буфера ввода
+			while (getchar() != '\n');
+
+			continue; // Повторяем ввод заново
+		}
 
 		if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
 		{
