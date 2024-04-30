@@ -28,7 +28,10 @@ int choice(void)
 
 int operations(char o)
 {
-	if (getchar() != '\n') {
+	//если было введено больше 1 сивола
+	if (getchar() != '\n')
+	{
+		//сообщение об ошибке
 		printf("error\n");
 
 		// Очистка буфера ввода
