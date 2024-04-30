@@ -26,13 +26,10 @@ int choice(void)
 	}
 }
 
-int operations(char o)
+int operations(char o[100])
 {
-	fflush(stdin);
-	fseek(stdin, 0, SEEK_END);
-
 	float a, b;
-	if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
+	if (o[0] != '+' && o[0] != '-' && o[0] != '*' && o != '/' && o[0] != '0')
 	{
 		puts("\nerror");
 		switchcase();
@@ -41,7 +38,7 @@ int operations(char o)
 	scanf("%f", &a);
 	puts("enter the second number: ");
 	scanf("%f", &b);
-	switch (o)
+	switch (o[0])
 	{
 	case '0':
 		exit(0);
@@ -70,13 +67,14 @@ int operations(char o)
 
 int switchcase()
 {
-	char o;
+	char o[100];
 	puts("\nwhat you want to do?");
 	puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
 	while (10 > 0)
 	{
-		scanf(" %c", &o);
-		if (o == '0')
+		scanfs("%s", &o);
+		o[1] = '\0';
+		if (o[0] == '0')
 		{
 			//choice();
 			exit(0);
@@ -116,24 +114,21 @@ int divide(float a, float b)
 int pointer() 
 {
 
-	char o;
+	char o[100];
 	float a, b,c;
 	float (*operation[])(float, float) = { ['+'] = addup,['-'] = subtract,['*'] = multiply,['/'] = divide };
 	while (10 > 0)
 	{
 		puts("\nwhat you want to do?\n");
 		puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
-		scanf(" %c", &o);
+		scanf("%s", &o);
 
-		fflush(stdin);
-		fseek(stdin, 0, SEEK_END);
-
-		if (o != '+' && o != '-' && o != '*' && o != '/' && o != '0')
+		if (o[0] != '+' && o[0] != '-' && o[0] != '*' && o[0] != '/' && o[0] != '0')
 		{
 			puts("\nerror");
 			pointer();
 		}
-		if (o == '0')
+		if (o[0] == '0')
 		{
 			//choice();
 			exit(0);
@@ -142,20 +137,20 @@ int pointer()
 		scanf("%f", &a);
 		puts("enter the second number: ");
 		scanf("%f", &b);
-		c = operation[o](a, b);
-		if (o == '+')
+		c = operation[o[0]](a, b);
+		if (o[0] == '+')
 		{
 			printf("\n%g + %g = %g\n", a, b, c);
 		}
-		if (o == '-')
+		if (o[0] == '-')
 		{
 			printf("\n%g - %g = %g\n", a, b, c);
 		}
-		if (o == '*')
+		if (o[0] == '*')
 		{
 			printf("\n%g * %g = %g\n", a, b, c);
 		}
-		if (o == '/')
+		if (o[0] == '/')
 		{
 			if (b != 0)
 			{
