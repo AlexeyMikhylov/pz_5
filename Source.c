@@ -133,7 +133,7 @@ int pointer()
 		puts("enter:\n+ to add up;\n- to subtract;\n* to multiply;\n/ to divide;\n 0 to exit;\n");
 		scanf(" %c", &o);
 
-		//если было введено больше 1 сивола
+		//если было введено больше 1 символа
 		if (getchar() != '\n') {
 			printf("Error\n");
 
